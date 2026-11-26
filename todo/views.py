@@ -1,8 +1,16 @@
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
 from todo.forms import TagForm, TaskForm
 from todo.models import Tag, Task
+
+
+def toggle_task_status(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.is_done = not task.is_done
+    task.save()
+    return redirect("todo:task-list")
 
 
 class TaskListView(generic.ListView):
