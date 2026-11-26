@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+  <h1 class="display-5 fw-semibold mb-0">Tags</h1>
+  <a class="btn btn-primary" href="{% url 'todo:tag-create' %}">Add</a>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th class="py-3">Name</th>
+      <th class="py-3">Update</th>
+      <th class="py-3">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for tag in tag_list %}
+    <tr>
+      <td class="py-3">{{ tag.name }}</td>
+      <td class="py-3">
+        <a class="btn btn-secondary" href="{% url 'todo:tag-update' pk=tag.id %}">Update</a>
+      </td>
+      <td class="py-3">
+        <a class="btn btn-secondary" href="{% url 'todo:tag-delete' pk=tag.id %}">Delete</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="3" class="text-secondary">No tags yet.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
