@@ -20,3 +20,8 @@ class TaskForm(forms.ModelForm):
         required=False,
     )
 
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = "__all__"
