@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="display-5 fw-semibold mb-4">{% if object %}Update task{% else %}Add task{% endif %}</h1>
+<form action="" method="post" style="max-width: 500px">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-primary" type="submit">Save</button>
+  <a class="btn btn-secondary" href="{% url 'todo:task-list' %}">Cancel</a>
+</form>
+{% endblock %}
