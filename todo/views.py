@@ -17,6 +17,7 @@ def toggle_task_status(request, pk):
 
 class TaskListView(generic.ListView):
     model = Task
+    queryset = Task.objects.prefetch_related("tags")
 
 
 class TaskCreateView(generic.CreateView):
